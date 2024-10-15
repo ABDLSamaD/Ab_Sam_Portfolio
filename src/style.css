@@ -1,0 +1,622 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+::selection {
+  background: rgba(0, 124, 146, 0.432);
+  color: rgb(223, 204, 204);
+}
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #1698f057;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #006caa;
+}
+
+body {
+  background: rgb(9, 26, 54);
+  background: linear-gradient(
+    270deg,
+    rgb(2, 8, 17) 17%,
+    rgb(7, 8, 7) 77%,
+    rgba(2, 8, 17, 0.9836309523809523) 100%
+  );
+  font-family: sans-serif;
+}
+
+:root {
+  --colormain: rgb(209 213 219);
+  --skin-color: #1698f057;
+  /* --skin-color: rgba(222, 184, 135, 0.747); */
+}
+
+.container {
+  width: min(100% - 15px, 90%);
+  margin: 0 auto;
+}
+
+.fade-out {
+  animation: fadeOut 0.5s forwards;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* nav */
+
+header {
+  padding: 5px;
+  color: rgb(209 213 219);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hamburger {
+  width: 90px;
+  height: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.line {
+  background-color: rgb(216, 216, 216);
+  height: 2px;
+  width: 100%;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.hamburger.active .top {
+  transform: rotate(45deg) translateY(8px);
+}
+
+.hamburger.active .bottom {
+  transform: rotate(-45deg) translateY(-8px);
+}
+
+/* Navigation menu styles */
+.nav-menu {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #00528399;
+  backdrop-filter: blur(20px);
+  visibility: hidden; /* Hidden by default */
+  opacity: 0;
+  transition: visibility 0s linear 0.5s, opacity 0.5s linear;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  z-index: 1000;
+}
+
+.nav-menu ul {
+  list-style: none;
+}
+
+.nav-menu ul li {
+  margin: 20px 0;
+}
+
+.nav-menu ul li a {
+  text-decoration: none;
+  color: var(--colormain);
+  font-size: 4vw;
+  padding: 10px;
+  display: block;
+}
+
+.nav-menu ul li a:hover {
+  transform: scale(1.1);
+  transition: transform 0.5s linear;
+  text-shadow: 0 1px 4px gray;
+}
+
+/* When the menu is active, show it */
+.nav-menu.active {
+  display: flex;
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 1s ease-in-out; /* Animation for 1 second */
+}
+
+/* Hamburger inside the menu - Position it at the top-right of the menu */
+.hamburger#hamburger-inside {
+  position: absolute;
+  top: 30px;
+  right: 20px;
+}
+
+.hamburger.inside-nav {
+  position: absolute; /* Place the hamburger inside the menu */
+  top: 30px;
+  right: 10px; /* Fix it to the top-right */
+}
+
+/* Optionally, center it at the top */
+.hamburger.inside-nav.center {
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.hamburger#hamburger-inside .line {
+  background: #ddf;
+}
+
+/* nav */
+
+/* main */
+#main {
+  /* width: 100%;
+  height: 100%; */
+  position: relative;
+}
+
+/* home */
+#home {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  top: 2rem;
+  /* font-family: "Anton", sans-serif;   */
+  overflow: hidden;
+}
+
+#home .container {
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  padding: 2px;
+  margin-bottom: 40px;
+}
+#home .row {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+#home .row h1 {
+  display: flex;
+  align-items: center;
+  font-size: 118px;
+  color: var(--colormain);
+  animation: slideIn 1s ease forwards;
+  animation-delay: 1s;
+  opacity: 0;
+  cursor: pointer;
+  /* transition: all 1s ease; */
+}
+
+.frontendtext {
+  transform: translateX(-100%);
+  transition: transform 1s ease;
+}
+.frontendtexts {
+  transform: translateX(100%);
+  transition: transform 1s ease;
+}
+
+/* after scroll */
+
+#home .row h1:has(:first-child:hover, :last-child:hover) {
+  color: burlywood;
+}
+@keyframes slideIn {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+#home .row h1 .text-line {
+  height: 2px;
+  width: 26vw;
+  background: var(--colormain);
+}
+
+#home .row h2 {
+  font-size: 118px;
+  color: var(--colormain);
+  letter-spacing: 10px;
+  overflow-wrap: break-word;
+  animation: slideout 1s ease forwards;
+  animation-delay: 1.5s;
+  opacity: 0;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+.backendtext {
+  translate: -110%;
+}
+
+#home .row h2:hover {
+  color: burlywood;
+}
+
+@keyframes slideout {
+  0% {
+    transform: translateX(-100%); /* Start from the left, off-screen */
+    opacity: 0; /* Start as invisible */
+  }
+  100% {
+    transform: translateX(0); /* Move to the original position */
+    opacity: 1; /* Fade in */
+  }
+}
+#home .row .image {
+  position: relative;
+  top: 5rem;
+  width: 200px;
+  height: 200px;
+  /* transform: translateX(-250%); */
+  animation: transformimg 1s linear backwards;
+  animation-delay: 1s;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+  }
+}
+/* Add 3D effect and delay the appearance of pseudo-elements */
+#home .row .image::after,
+#home .row .image::before {
+  content: "";
+  position: absolute;
+  height: 80px;
+  width: 80px;
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.5s ease, transform 0.5s ease; /* Smooth transitions */
+  transform: rotateX(90deg) rotateY(0deg); /* Initial 3D rotation */
+}
+
+#home .row .image::after {
+  border-bottom: 7px solid var(--skin-color);
+  border-right: 7px solid var(--skin-color);
+  right: -15px;
+  bottom: -15px;
+}
+
+#home .row .image::before {
+  border-top: 7px solid var(--skin-color);
+  border-left: 7px solid var(--skin-color);
+  left: -15px;
+  top: -15px;
+}
+
+/* 3D Animation for the pseudo-elements */
+#home .row .image.show-pseudo::after,
+#home .row .image.show-pseudo::before {
+  opacity: 1; /* Show the pseudo-elements */
+  transform: rotateX(0deg) rotateY(0deg); /* Reset to normal position */
+}
+
+/* Keyframes for 3D rotation of pseudo-elements */
+@keyframes rotate3D {
+  0% {
+    transform: rotateX(90deg) rotateY(90deg) translateZ(150px);
+    opacity: 0;
+  }
+  100% {
+    transform: rotateX(0deg) rotateY(0deg) translateZ(0);
+    opacity: 1;
+  }
+}
+
+/* Add a class after the image animation finishes */
+#home .row .image.animated::before,
+#home .row .image.animated::after {
+  animation: rotate3D 1s ease forwards;
+}
+@keyframes transformimg {
+  0% {
+    transform: translateX(-250%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+#home .row-2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+  top: 116px;
+}
+#home .row-2 .image-rotate {
+  position: relative;
+  width: 90px;
+  height: 90px;
+}
+#home .row-2 .image-rotate img {
+  width: 100%;
+  height: 100%;
+  animation: rotate 3s linear infinite;
+  transition: animation 0.3s ease;
+  object-fit: cover;
+}
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#home .row-2 .text {
+  position: relative;
+  display: flex;
+  align-items: end;
+  flex-direction: column;
+  color: rgb(209 213 219);
+}
+#home .row-2 .text p a {
+  all: unset;
+  text-decoration: underline;
+  letter-spacing: 1px;
+  font-size: 1.1em;
+  cursor: pointer;
+}
+
+@keyframes slideup {
+  0% {
+    transform: translateY(100px); /* Start 100px below */
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0); /* End at normal position */
+    opacity: 1;
+  }
+}
+
+/* about */
+
+#about {
+  position: relative;
+  margin-bottom: 2rem;
+  width: 100%;
+  height: 80vh;
+  overflow: hidden;
+}
+#about .container {
+  display: flex;
+  flex-direction: column;
+}
+
+#about .container h1 {
+  font-size: 60px;
+  text-transform: uppercase;
+  font-family: "Anton", sans-serif;
+  color: var(--colormain);
+}
+
+.fade-paragraph {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* .fade-paragraph.visible {
+  opacity: 1;
+  transform: translateY(0);
+} */
+
+#about .container .fade-paragraph {
+  opacity: 0.1;
+  transition: opacity 1s ease;
+  font-size: 28px;
+  line-height: 1.5;
+  margin: 15px 0;
+  color: var(--colormain);
+}
+
+#about .container .visible {
+  opacity: 1;
+}
+#about .container .rows-2 {
+  transform: rotate(2deg);
+  width: 110%;
+  right: -2%;
+  position: absolute;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  background: black;
+  display: flex;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  z-index: 10000;
+  bottom: 120px;
+  margin-bottom: -80px;
+  margin-left: -1rem;
+}
+#about .container .rows-2 .column {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  gap: 2rem;
+  color: white;
+  font-weight: 500;
+  background: rgb(46 46 46);
+  font-size: 2rem;
+  height: 5.5rem;
+  animation: 30s linear 0s infinite normal none running infinitetransformreverse;
+
+  p {
+    white-space: nowrap;
+    text-align: center;
+  }
+}
+@keyframes infinitetransformreverse {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+#about .container .row-2 {
+  transform: rotate(-2deg);
+  width: 110%;
+  background: black;
+  position: absolute;
+  left: -2%;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  display: flex;
+  z-index: 10000;
+  bottom: 40px;
+  margin-left: -1rem;
+}
+
+#about .container .row-2 .column {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  gap: 2rem;
+  color: white;
+  font-weight: 500;
+  font-size: 2rem;
+  height: 5.5rem;
+  background-color: rgb(239, 69, 68);
+  animation: 30s linear 0s infinite normal none running infinitetransform;
+
+  p {
+    white-space: nowrap;
+    text-align: center;
+  }
+}
+@keyframes infinitetransform {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+#about .container .skills-content svg {
+  display: block;
+  color: var(--colormain);
+  flex-shrink: 0;
+}
+#about .container .variousheading {
+  padding-top: 4rem;
+  padding-bottom: 1rem;
+  h3 {
+    font-size: 20px;
+    color: rgb(156 163 175);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+}
+
+/* project */
+#project {
+  /* background-color: red; */
+  height: 100%;
+  width: 100%;
+}
+
+/* about backarrow */
+.back:hover {
+  font-size: xx-large;
+}
+
+/* talk animation */
+.talk h2 {
+  animation: animaterighttoleft 10s linear infinite;
+}
+@keyframes animaterighttoleft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* media querry for mobile screen */
+@media screen and (max-width: 768px) {
+  .container {
+    width: min(100% - 15px, 500px);
+  }
+  #home .container {
+    width: 100%;
+    grid-template-rows: 0fr 0.7fr;
+  }
+  #home .row {
+    flex-direction: column; /* Ensure a vertical layout on smaller screens */
+    align-items: start;
+  }
+  #home .row h1 {
+    display: block;
+  }
+  #home .row h1,
+  #home .row h2 {
+    font-size: 68px;
+    letter-spacing: 2px;
+  }
+  #home .row-2 {
+    width: 90%;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  #about {
+    height: 800px;
+  }
+}
+@media screen and (max-width: 478px) {
+  #home .row h1,
+  #home .row h2 {
+    font-size: 56px;
+    letter-spacing: 1px;
+  }
+  #about {
+    height: 1100px;
+  }
+  .fade-paragraph {
+    font-size: 18px;
+    line-height: 1.6;
+    margin: 15px 0;
+  }
+  #about .container h1 {
+    font-size: 47px;
+  }
+}
