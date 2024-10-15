@@ -279,6 +279,7 @@ header {
 #home .row .image {
   position: relative;
   top: 5rem;
+  left: 20px;
   width: 200px;
   height: 200px;
   /* transform: translateX(-250%); */
@@ -580,6 +581,9 @@ header {
     width: 100%;
     grid-template-rows: 0fr 0.7fr;
   }
+  .nav-menu ul li a {
+  font-size: 40px;
+}
   #home .row {
     flex-direction: column; /* Ensure a vertical layout on smaller screens */
     align-items: start;
@@ -603,6 +607,9 @@ header {
   }
 }
 @media screen and (max-width: 478px) {
+  .nav-menu ul li a {
+  font-size: 30px;
+}
   #home .row h1,
   #home .row h2 {
     font-size: 56px;
