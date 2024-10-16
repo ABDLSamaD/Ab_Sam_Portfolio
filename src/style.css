@@ -613,7 +613,7 @@ header {
   #about {
     height: 1100px;
   }
-  #about .container .fade-paragraph {
+  #about .container .row .fade-paragraph p {
     font-size: 18px;
     line-height: 1.6;
     margin: 15px 0;
