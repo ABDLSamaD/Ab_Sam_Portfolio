@@ -32,7 +32,7 @@ const FadeInSection = ({ children }) => {
 
   return (
     <div
-      className={`fade-paragraph text-base md:text-2xl ${isVisible ? "visible" : ""}`}
+      className={`fade-paragraph ${isVisible ? "visible" : ""}`}
       ref={fadeRef}
     >
       {children}
