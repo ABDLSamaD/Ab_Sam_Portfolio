@@ -432,11 +432,6 @@ header {
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
-/* .fade-paragraph.visible {
-  opacity: 1;
-  transform: translateY(0);
-} */
-
 #about .container .fade-paragraph {
   opacity: 0.1;
   transition: opacity 1s ease;
@@ -618,7 +613,7 @@ header {
   #about {
     height: 1100px;
   }
-  .fade-paragraph {
+  #about .container .fade-paragraph {
     font-size: 18px;
     line-height: 1.6;
     margin: 15px 0;
